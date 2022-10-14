@@ -1,8 +1,84 @@
 #![allow(dead_code)]
 
+use std::io;
+
 fn main() {
-    variables();
-    data_types();
+    // variables();
+    // data_types();
+    // console_input();
+    // arithmetic();
+    conditions();
+}
+
+fn conditions() {
+    let x = 2 <= 3;
+    // let y = 2 <= 2.2;        // Error - not the same type
+    let y = 2 as f32 <= 2.2;
+    println!("{} {}", x, y);
+
+    let or_operator = !(true || y);
+    println!("{}", or_operator);
+
+    let food = "fruit";
+    if food == "cookie" {
+        println!("I like cookies too!");
+    } else if food == "fruit" {
+        println!("Fruit is aight");
+    } else {
+        println!("Maaaan...");
+    }
+}
+
+fn arithmetic() {
+    // let x: u8 = 256      // Error - u8: 0->255
+
+    // let x: i16 = 12;
+    // let y: i8 = 10;
+    // let z = x + y;       // Error - you cannot add i16 with i8
+
+    // let x: u8 = 255;
+    // let y: u8 = 1;
+    // let z = x + y;            // Error - u8 + u8 = u8 and u8 cannot be 256 (overflow)
+
+    let x: u8 = 255;
+    let y: u8 = 10;
+    let z = x / y; // Results in 25 - removes the 0.5
+    println!("{}", z);
+
+    let x: f64 = 255.0;
+    let y: f64 = 10.0;
+    let z = x / y; // Results in 25.5
+    println!("{}", z);
+
+    let x = 255u8; // Implies that 255 is treated as a u8
+    let y = 10_u8; // The same - underline is not read
+    let z = 120 as i32; // Also the same - the 'as' keyword can be used to sepcify type
+    let u = (x as i32 + z) / y as i32; // Allows us to match types
+    println!("{}", u);
+
+    // CONVERT SMALLER VALUE TO LARGER - NOT THE OTHER WAY AROUND!
+    let x = (i32::MAX as i64) + 1; // Maximum i32 value + 1 stored in i64 (overflow if i32)
+    let y = 10 as i32;
+    let z = x as i32 / y; // This does not throw an error despite an overflow.
+    println!("{}", z);
+
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read line");
+    let int_input: i64 = input.trim().parse().unwrap(); // 'trim()' trims the '\n' from the input
+    println!("{}", int_input + 2);
+}
+
+fn console_input() {
+    // Reserve space for an input string (so fkn cool)
+    let mut input = String::new(); // 'new()' is a function in the module 'String'
+
+    // Take in input
+    io::stdin()
+        .read_line(&mut input) // &mut creates a copy of a variable's value. Mut because we want to change the input
+        .expect("Failed to read line");
+    println!("{}", input)
 }
 
 fn data_types() {
