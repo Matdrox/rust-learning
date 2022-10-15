@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![allow(unused_variables)]
 
 use std::io;
 
@@ -7,7 +8,35 @@ fn main() {
     // data_types();
     // console_input();
     // arithmetic();
-    conditions();
+    // conditions();
+    expressions_statements();
+}
+
+fn expressions_statements() {
+    add_numbers(20, 30);
+    
+    fn add_numbers(x: i32, y: i32) {        // Always specify parameter types
+        println!("The sum is {}", x + y);
+    }
+
+    let stmt = 20;     // This is a statement. It does NOT return a value
+    let exp = {
+        // This is an expression. It returns a value
+        let res = 3;
+        res + 1     // Return
+    };
+    println!("{}", exp);
+
+    let returned_nums = return_nums(2, 3);
+    println!("{}", returned_nums);
+
+    fn return_nums(x: i8, y:i8) -> i8 {     // Specify the type that is being returned
+        let result = x + y;
+        if result > 10 {
+            return result - 10;
+        }
+        return result        // Return is not needed. Do NOT use semicolon when returning
+    }
 }
 
 fn conditions() {
