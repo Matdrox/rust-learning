@@ -159,9 +159,9 @@ fn variables() {
     // print!("x is {x}")
 
     // This works, but it throws a warning. Better to make mutable
-    // let y = 5;
-    // let y = 6;
-    // print!("y is {y}");
+    let y = 5;
+    let y = 6;
+    print!("y is {y}");
 
     const SECONDS_IN_MINUTE: u32 = 60; // Const requires a specific type
                                        // const SECONDS_IN_MINUTE: u32 = 100;  // Unlike 'let', this throws an error
